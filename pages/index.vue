@@ -4,39 +4,51 @@
       :data="chart"
       :overlays="overlays"
       :extensions="ext"
-      :legend-buttons="['display']"
+      :legend-buttons="['display', 'settings', 'up', 'down', 'add', 'remove']"
+      :night="true"
+      :width="1500"
+      :height="900"
     ></trading-vue>
   </div>
 </template>
 
 <script>
 import { TradingVue, DataCube } from "trading-vue-js";
+import Overlays from "tvjs-overlays";
 import ChartExtensions from "tvjs-xp";
 import EMA from "@/components/EMA";
+import dataJson from "@/data.js";
 
 export default {
   name: "app",
   components: { TradingVue, EMA },
   data() {
     return {
-      overlays: [EMA],
+      overlays: [EMA, Overlays["MACD"]],
       chart: new DataCube({
         chart: {
           type: "Candles",
-          data: [
-            [1551128400000, 33, 37.1, 14, 14, 196],
-            [1551132000000, 13.7, 30, 6.6, 30, 206],
-            [1551135600000, 29.9, 33, 21.3, 21.8, 74],
-            [1551139200000, 21.7, 25.9, 18, 24, 140],
-            [1551142800000, 24.1, 24.1, 24, 24.1, 29]
-          ]
+          data: dataJson
         },
         onchart: [
           {
-            name: "Setups",
-            type: "Setups",
-            data: [[1551128400000, 1, 35]],
+            name: "EMA",
+            type: "Spline",
+            data: [
+              [1593824400000, 9000, 20],
+              [1593828000000, 9000, 35]
+            ],
             settings: {}
+          }
+        ],
+        offchart: [
+          {
+            name: "MACD",
+            type: "MACD",
+            data: [],
+            settings: {
+              histColors: ["#35a776", "#79e0b3", "#e54150", "#ea969e"]
+            }
           }
         ]
       }),

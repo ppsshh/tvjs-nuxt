@@ -12,6 +12,7 @@
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
     "trading-vue-js": "^1.0.0",
+    "tvjs-overlays": "^0.3.0",
     "tvjs-xp": "^0.3.0"
   },
   "devDependencies": {}
