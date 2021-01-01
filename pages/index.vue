@@ -16,15 +16,15 @@
 import { TradingVue, DataCube } from "trading-vue-js";
 import Overlays from "tvjs-overlays";
 import ChartExtensions from "tvjs-xp";
-import EMA from "@/components/EMA";
+import Circles from "@/components/Circles";
 import dataJson from "@/data.js";
 
 export default {
   name: "app",
-  components: { TradingVue, EMA },
+  components: { TradingVue, Circles },
   data() {
     return {
-      overlays: [EMA, Overlays["MACD"]],
+      overlays: [Circles, Overlays["MACD"]],
       chart: new DataCube({
         chart: {
           type: "Candles",
@@ -32,11 +32,11 @@ export default {
         },
         onchart: [
           {
-            name: "EMA",
-            type: "Spline",
+            name: "Circles",
+            type: "Circles",
             data: [
-              [1593824400000, 9000, 20],
-              [1593828000000, 9000, 35]
+              [1593824400000, 1, 9000],
+              [1593828000000, 2, 9020]
             ],
             settings: {}
           }

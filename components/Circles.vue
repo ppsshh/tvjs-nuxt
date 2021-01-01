@@ -20,7 +20,7 @@ export default {
       }
     },
     use_for() {
-      return ["Setups"];
+      return ["Circles"];
     }
   }
 };
