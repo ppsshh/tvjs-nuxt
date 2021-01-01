@@ -24,7 +24,7 @@ export default {
   components: { TradingVue, Circles },
   data() {
     return {
-      overlays: [Circles, Overlays["MACD"]],
+      overlays: [...Object.values(Overlays), Circles],
       chart: new DataCube({
         chart: {
           type: "Candles",
@@ -38,6 +38,12 @@ export default {
               [1593824400000, 1, 9000],
               [1593828000000, 2, 9020]
             ],
+            settings: {}
+          },
+          {
+            name: "EMA",
+            type: "EMA",
+            data: [],
             settings: {}
           }
         ],
