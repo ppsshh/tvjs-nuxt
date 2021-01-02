@@ -5,9 +5,10 @@
       :overlays="overlays"
       :extensions="ext"
       :legend-buttons="['display', 'settings', 'up', 'down', 'add', 'remove']"
-      :night="true"
-      :width="1500"
-      :height="900"
+      :toolbar="true"
+      titleTxt="To the moon 📈"
+      :width="width"
+      :height="height"
     ></trading-vue>
   </div>
 </template>
@@ -24,6 +25,8 @@ export default {
   components: { TradingVue, Circles },
   data() {
     return {
+      width: window.innerWidth,
+      height: window.innerHeight,
       overlays: [...Object.values(Overlays), Circles],
       chart: new DataCube({
         chart: {
@@ -31,15 +34,6 @@ export default {
           data: dataJson
         },
         onchart: [
-          {
-            name: "Circles",
-            type: "Circles",
-            data: [
-              [1593824400000, 1, 9000],
-              [1593828000000, 2, 9020]
-            ],
-            settings: {}
-          },
           {
             name: "EMA",
             type: "EMA",
@@ -60,6 +54,23 @@ export default {
       }),
       ext: Object.values(ChartExtensions)
     };
+  },
+  mounted() {
+    window.addEventListener("resize", this.onResize);
+    this.onResize();
+  },
+  methods: {
+    onResize(event) {
+      this.width = window.innerWidth;
+      this.height = window.innerHeight;
+    }
   }
 };
 </script>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+}
+</style>
