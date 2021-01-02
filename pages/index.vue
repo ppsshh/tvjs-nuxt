@@ -6,9 +6,10 @@
       :extensions="ext"
       :legend-buttons="['display', 'settings', 'up', 'down', 'add', 'remove']"
       :toolbar="true"
-      titleTxt="To the moon 📈"
+      titleTxt="To the moon 🚀"
       :width="width"
       :height="height"
+      skin="cryptowatch"
     ></trading-vue>
   </div>
 </template>
@@ -18,6 +19,7 @@ import { TradingVue, DataCube } from "trading-vue-js";
 import Overlays from "tvjs-overlays";
 import ChartExtensions from "tvjs-xp";
 import Circles from "@/components/Circles";
+import SkinPack from "@/components/SkinPack.js";
 import dataJson from "@/data.js";
 
 export default {
@@ -52,7 +54,7 @@ export default {
           }
         ]
       }),
-      ext: Object.values(ChartExtensions)
+      ext: [...Object.values(ChartExtensions), SkinPack]
     };
   },
   mounted() {
@@ -72,5 +74,13 @@ export default {
 body {
   margin: 0;
   overflow: hidden;
+}
+@font-face {
+  font-family: "Iosevka Term Web";
+  font-display: swap;
+  font-weight: 400;
+  font-stretch: expanded;
+  font-style: normal;
+  src: url("~assets/fonts/iosevka-term-extended.woff2") format("woff2");
 }
 </style>
